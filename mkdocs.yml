@@ -1,0 +1,7 @@
+site_name: Technical Writer Handbook
+site_description: A handbook for technical writers
+theme:
+  name: material
+
+nav:
+  - Home: index.md
