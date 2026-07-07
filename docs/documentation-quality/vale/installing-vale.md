@@ -8,23 +8,23 @@ Vale is available for Windows, macOS, and Linux. Install Vale on your developmen
 
 === "macOS"
 
-    Install Vale using Homebrew.
+Install Vale using Homebrew.
 
-    ```bash
-    brew install vale
-    ```
+```bash
+brew install vale
+```
 
 === "Windows"
 
-    Install Vale using WinGet.
+Install Vale using WinGet.
 
-    ```powershell
-    winget install errata-ai.Vale
-    ```
+```powershell
+winget install errata-ai.Vale
+```
 
 === "Linux"
 
-    Follow the installation instructions for your Linux distribution in the Vale documentation.
+Follow the installation instructions for your Linux distribution in the Vale documentation.
 
 ## Verify the installation
 
@@ -46,29 +46,29 @@ Keep Vale up to date to receive the latest features, bug fixes, and writing rule
 
 === "macOS"
 
-    ```bash
-    brew upgrade vale
-    ```
+```bash
+brew upgrade vale
+```
 
 === "Windows"
 
-    ```powershell
-    winget upgrade errata-ai.Vale
-    ```
+```powershell
+winget upgrade errata-ai.Vale
+```
 
 ## Uninstall Vale
 
 === "macOS"
 
-    ```bash
-    brew uninstall vale
-    ```
+```bash
+brew uninstall vale
+```
 
 === "Windows"
 
-    ```powershell
-    winget uninstall errata-ai.Vale
-    ```
+```powershell
+winget uninstall errata-ai.Vale
+```
 
 ## Checklist
 
