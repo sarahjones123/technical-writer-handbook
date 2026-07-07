@@ -1,4 +1,4 @@
-name: Deploy Technical Writer Handbook
+name: Deploy Documentation
 
 on:
   push:
@@ -6,49 +6,45 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install MkDocs
+      - name: Install dependencies
         run: |
-          pip install mkdocs-material
+          pip install -r requirements.txt
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Build documentation
+        run: mkdocs build --strict
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
         with:
-          node-version: 22
+          path: site
 
-      - name: Install npm packages
-        run: npm install
-
-      - name: Install Vale
-        uses: errata-ai/vale-action@v2
-        with:
-          version: latest
-
-      - name: Sync Vale styles
-        run: vale sync
-
-      - name: Run Markdownlint
-        run: npx markdownlint-cli2 "docs/**/*.md"
-
-      - name: Run Vale
-        run: vale docs
-
-      - name: Build MkDocs
-        run: mkdocs build
-
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
