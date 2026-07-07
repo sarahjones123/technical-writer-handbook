@@ -13,9 +13,22 @@ nav:
       - Overview: writing-standards/index.md
       - Voice and tone: writing-standards/voice-and-tone.md
       - Formatting: writing-standards/formatting.md
+      - Procedures: writing-standards/procedure.md
+      - Headings: writing-standards/headings.md
+      - Lists: writing-standards/lists.md
+      - UI writing: writing-standards/ui-writing.md
+      - Links: writing-standards/links.md
+      - Images: writing-standards/images.md
+      - Terminology: writing-standards/terminology.md
 
   - Documentation quality:
       - Markdownlint: documentation-quality/markdownlint.md
-      - Vale: documentation-quality/vale.md
+      - Vale:
+         - Overview: documentation-quality/vale/vale.md
+         - Installing vale: documentation-quality/vale/installing-vale.md
+         - Configuring vale: documentation-quality/vale/configuring-vale.md
+         - Understanding vale alerts: documentation-quality/vale/understanding-vale-alerts.md
+         - Common vale alerts: documentation-quality/vale/common-vale-alerts.md
+         - Creating custom rules: documentation-quality/vale/custom-rules.md
 
   - Glossary: glossary.md
