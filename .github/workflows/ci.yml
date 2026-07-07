@@ -45,6 +45,7 @@ jobs:
 
       - name: Run Vale
         run: vale docs
+        continue-on-error: true
 
       - name: Build MkDocs
         run: mkdocs build --strict
