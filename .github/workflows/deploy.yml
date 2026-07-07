@@ -1,0 +1,55 @@
+name: Deploy Technical Writer Handbook
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install MkDocs
+        run: |
+          pip install mkdocs-material
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install npm packages
+        run: npm install
+
+      - name: Install Vale
+        run: |
+          curl -fsSL https://github.com/errata-ai/vale/releases/latest/download/vale_Linux_64-bit.tar.gz \
+          | tar -xz
+          sudo mv vale /usr/local/bin/
+
+      - name: Sync Vale styles
+        run: vale sync
+
+      - name: Run Markdownlint
+        run: npx markdownlint-cli2 "docs/**/*.md"
+
+      - name: Run Vale
+        run: vale docs
+
+      - name: Build MkDocs
+        run: mkdocs build
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
